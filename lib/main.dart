@@ -8,14 +8,14 @@ void main() {
 
 // Fetch Data
 
-Future<Album> fetchAlbum() async {
+Future<users> fetchusers() async {
   final response = await http.get(
-      Uri.parse("https://jsonplaceholder.typicode.com/users/9"));
+      Uri.parse("https://jsonplaceholder.typicode.com/users/2"));
 
   if (response.statusCode == 200) {
     // If the server did return a 200 OK response,
     // then parse the JSON.
-    return Album.fromJson(jsonDecode(response.body));
+    return users.fromJson(jsonDecode(response.body));
   } else {
     // If the server did not return a 200 OK response,
     // then throw an exception.
@@ -24,22 +24,22 @@ Future<Album> fetchAlbum() async {
 }
 
 // Album -> To convert the json data to Obj and display to user
-class Album {
+class users {
 
   final String username;
   final String name;
   final int id;
   final String email;
 
-  Album({
+  users({
     required this.name,
     required this.username,
     required this.id,
     required this.email,
   });
 
-  factory Album.fromJson(Map<String, dynamic> json) {
-    return Album(
+  factory users.fromJson(Map<String, dynamic> json) {
+    return users(
         name: json['name'],
         username: json['username'],
         id: json['id'],
@@ -56,13 +56,13 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  late Future<Album> _futureAlbum;
+  late Future<users> _futureusers;
 
   @override
   void initState() {
 
     super.initState();
-    _futureAlbum = fetchAlbum();
+    _futureusers = fetchusers();
   }
 
   @override
@@ -76,8 +76,8 @@ class _MyAppState extends State<MyApp> {
         ),
         body: Center(
           child: Container(
-              child: FutureBuilder<Album>(
-                future: _futureAlbum,
+              child: FutureBuilder<users>(
+                future: _futureusers,
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.done) {
                     if (snapshot.hasData) {
@@ -88,7 +88,6 @@ class _MyAppState extends State<MyApp> {
                           Text(snapshot.data!.username),
                           // Text(snapshot.data!.id),
                           Text(snapshot.data!.email),
-
                         ],
                       );
                     } else if (snapshot.hasError) {
