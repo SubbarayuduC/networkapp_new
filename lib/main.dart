@@ -56,10 +56,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  TextEditingController _namecontroller = TextEditingController();
-  TextEditingController _usernamecontroller = TextEditingController();
-  TextEditingController _paswordcontroller = TextEditingController();
-  TextEditingController _emailcontroller = TextEditingController();
   late Future<Album> _futureAlbum;
 
   @override
