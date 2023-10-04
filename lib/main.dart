@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 void main() {
   runApp(MyApp());
 }
-// updateAlbum(){}
+
 // Fetch Data
 
 Future<Album> fetchAlbum() async {
@@ -22,22 +22,6 @@ Future<Album> fetchAlbum() async {
     throw Exception('Failed to load album');
   }
 }
-
-// Http Request to update the data
-// Future<Album> updateAlbum(String title) async {
-//   final response =
-//   await http.put(Uri.parse('https://jsonplaceholder.typicode.com/users/9'),
-//       headers: <String, String>{
-//         'Content-Type': 'application/json; charset=UTF-8',
-//       },
-//       body: jsonEncode(<String, String>{'title': title}));
-//
-//   if (response.statusCode == 200) {
-//     return Album.fromJson(jsonDecode(response.body));
-//   } else {
-//     throw Exception('Failed to update album');
-//   }
-// }
 
 // Album -> To convert the json data to Obj and display to user
 class Album {
@@ -109,32 +93,6 @@ class _MyAppState extends State<MyApp> {
                           // Text(snapshot.data!.id),
                           Text(snapshot.data!.email),
 
-                          TextField(
-                            controller: _namecontroller,
-                            decoration: InputDecoration(hintText: "Enter Name"),
-                          ),
-                          TextField(
-                            controller: _usernamecontroller,
-                            decoration: InputDecoration(hintText: "Enter User Name"),
-                          ),
-                          TextField(
-                            controller: _paswordcontroller,
-                            decoration: InputDecoration(hintText: "Enter Password"),
-                          ),
-                          TextField(
-                            controller: _emailcontroller,
-                            decoration: InputDecoration(hintText: "Enter Email Address"),
-                          ),
-                          ElevatedButton(
-                              onPressed: () {
-                                setState(() {
-                                  // _futureAlbum = updateAlbum(_namecontroller.text);
-                                  // _futureAlbum = updateAlbum(_usernamecontroller.text);
-                                  // _futureAlbum = updateAlbum(_paswordcontroller.text);
-                                  // _futureAlbum = updateAlbum(_paswordcontroller.text);
-                                });
-                              },
-                              child: Text('Update Data'))
                         ],
                       );
                     } else if (snapshot.hasError) {
